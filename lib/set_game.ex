@@ -12,6 +12,8 @@ defmodule SetGame do
       supervisor(SetGame.Repo, []),
       # Start the endpoint when the application starts
       supervisor(SetGame.Endpoint, []),
+      supervisor(Registry, [:unique, SetGame.Game.Registry]),
+      supervisor(SetGame.Game.Supervisor, [])
       # Start your own worker by calling: SetGame.Worker.start_link(arg1, arg2, arg3)
       # worker(SetGame.Worker, [arg1, arg2, arg3]),
     ]

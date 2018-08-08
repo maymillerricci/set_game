@@ -26,4 +26,3 @@ defmodule SetGame.Game do
     {:reply, {:ok, player_number}, %{state | players: [player] ++ state.players}}
   end
 end
-

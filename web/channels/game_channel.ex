@@ -2,7 +2,6 @@ defmodule SetGame.GameChannel do
   use SetGame.Web, :channel
 
   def join("game:" <> id, _payload, socket) do
-    IO.inspect("channel: join")
     game =
       case SetGame.Game.Supervisor.new_game(id) do
         {:ok, pid} -> pid
@@ -23,7 +22,6 @@ defmodule SetGame.GameChannel do
   end
 
   def handle_info(:after_join, socket) do
-    IO.inspect("channel: handle info")
 #    game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
     broadcast(socket, "player_joined", %{player: socket.assigns.player})
     {:noreply, socket}

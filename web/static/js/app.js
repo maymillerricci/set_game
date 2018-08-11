@@ -19,3 +19,18 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+import {Socket} from "phoenix"
+
+let socket = new Socket("/socket", {params: {}});
+socket.connect();
+
+let boardContainer = document.getElementById("board");
+let gameId = boardContainer.attributes["data-game-id"].value;
+
+let channel = socket.channel(`game:${gameId}`);
+
+channel.join()
+  .receive("error", resp => {
+    alert(`Sorry, you can't join because ${resp.reason}`)
+  });

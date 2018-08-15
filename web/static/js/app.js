@@ -28,6 +28,7 @@ socket.connect();
 let boardContainer = document.getElementById("board");
 let gameId = boardContainer.attributes["data-game-id"].value;
 let playerList = document.getElementById("player-list");
+let startButton = document.getElementById("start-game");
 
 let channel = socket.channel(`game:${gameId}`);
 
@@ -46,4 +47,9 @@ channel.on("player_joined", payload => {
     playerListItem.innerText = playerText;
     playerList.appendChild(playerListItem);
   }
+});
+
+startButton.addEventListener("click", (event) => {
+  channel.push("start_game")
+    .receive("error", resp => alert(resp.reason));
 });

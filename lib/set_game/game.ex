@@ -5,6 +5,10 @@ defmodule SetGame.Game do
     GenServer.call(game, :join)
   end
 
+  def start(game) do
+    GenServer.call(game, {:start})
+  end
+
   ###
   # GenServer API
   ###
@@ -25,5 +29,9 @@ defmodule SetGame.Game do
     players = [player] ++ state.players
 
     {:reply, {:ok, player_number, players}, %{state | players: players}}
+  end
+
+  def handle_call({:start}, _from, state) do
+    {:reply, {:ok}, %{state | status: :in_progress}}
   end
 end

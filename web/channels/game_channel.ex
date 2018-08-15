@@ -34,4 +34,10 @@ defmodule SetGame.GameChannel do
 
     {:noreply, socket}
   end
+
+  def handle_in("start_game", _payload, socket) do
+    game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
+    SetGame.Game.start(game)
+    {:reply, :ok, socket}
+  end
 end

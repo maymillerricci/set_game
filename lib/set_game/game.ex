@@ -32,6 +32,11 @@ defmodule SetGame.Game do
   end
 
   def handle_call({:start}, _from, state) do
-    {:reply, {:ok}, %{state | status: :in_progress}}
+    deck = SetGame.Deck.generate() |> Enum.shuffle()
+
+    [a, b, c, d, e, f, g, h, i, j, k, l | tail] = deck
+    board = [a, b, c, d, e, f, g, h, i, j, k, l]
+
+    {:reply, {:ok}, %{state | status: :in_progress, board: board, deck: tail}}
   end
 end

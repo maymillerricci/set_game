@@ -1,1 +1,15 @@
-/* This file is for your main application css. */
+body {
+  background-color: lightsteelblue;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+
+td {
+  background-color: white;
+  border: 3px darkslateblue solid;
+  height: 160px;
+  width: 160px;
+}

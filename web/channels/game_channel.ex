@@ -9,21 +9,29 @@ defmodule SetGame.GameChannel do
       end
 
     case SetGame.Game.join(game) do
-      {:ok, player} ->
+      {:ok, player, players} ->
         socket =
           socket
           |> assign(:game_id, id)
           |> assign(:player, player)
-        send self(), :after_join
+          |> assign(:players, players)
+
+        send(self(), :after_join)
         {:ok, socket}
+
       {:error, reason} ->
         {:error, %{reason: reason}}
     end
   end
 
   def handle_info(:after_join, socket) do
-#    game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
-    broadcast(socket, "player_joined", %{player: socket.assigns.player})
+    game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
+
+    broadcast(socket, "player_joined", %{
+      player: socket.assigns.player,
+      players: socket.assigns.players
+    })
+
     {:noreply, socket}
   end
 end

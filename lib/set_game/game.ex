@@ -22,7 +22,8 @@ defmodule SetGame.Game do
   def handle_call(:join, _from, state) do
     player_number = length(state.players) + 1
     player = %SetGame.Player{number: player_number}
+    players = [player] ++ state.players
 
-    {:reply, {:ok, player_number}, %{state | players: [player] ++ state.players}}
+    {:reply, {:ok, player_number, players}, %{state | players: players}}
   end
 end

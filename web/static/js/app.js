@@ -27,6 +27,7 @@ socket.connect();
 
 let boardContainer = document.getElementById("board");
 let gameId = boardContainer.attributes["data-game-id"].value;
+let playerList = document.getElementById("player-list");
 
 let channel = socket.channel(`game:${gameId}`);
 
@@ -34,3 +35,15 @@ channel.join()
   .receive("error", resp => {
     alert(`Sorry, you can't join because ${resp.reason}`)
   });
+
+channel.on("player_joined", payload => {
+  playerList.innerHTML = "";
+  let players = payload.players;
+  for (let i = 0; i < players.length; i++) {
+    let playerListItem = document.createElement("li");
+    let player = payload.players[i];
+    let playerText = `Player #${player.number} | Points: ${player.points}`;
+    playerListItem.innerText = playerText;
+    playerList.appendChild(playerListItem);
+  }
+});

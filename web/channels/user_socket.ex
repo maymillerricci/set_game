@@ -3,7 +3,7 @@ defmodule SetGame.UserSocket do
 
   ## Channels
   # channel "room:*", SetGame.RoomChannel
-  channel "game:*", SetGame.GameChannel
+  channel("game:*", SetGame.GameChannel)
 
   ## Transports
   transport(:websocket, Phoenix.Transports.WebSocket)

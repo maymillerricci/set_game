@@ -25,10 +25,10 @@ import {Socket} from "phoenix"
 let socket = new Socket("/socket", {params: {}});
 socket.connect();
 
-let boardContainer = document.getElementById("board");
-let gameId = boardContainer.attributes["data-game-id"].value;
-let playerList = document.getElementById("player-list");
-let startButton = document.getElementById("start-game");
+let boardContainer = $("#board");
+let gameId = boardContainer.data("game-id");
+let playerList = $("#player-list");
+let startButton = $("#start-game");
 
 let channel = socket.channel(`game:${gameId}`);
 
@@ -38,27 +38,20 @@ channel.join()
   });
 
 channel.on("player_joined", payload => {
-  playerList.innerHTML = "";
-  let players = payload.players;
-  for (let i = 0; i < players.length; i++) {
-    let playerListItem = document.createElement("li");
-    let player = payload.players[i];
+  playerList.text("");
+  $.each(payload.players, function(index, player) {
     let playerText = `Player #${player.number} | Points: ${player.points}`;
-    playerListItem.innerText = playerText;
-    playerList.appendChild(playerListItem);
-  }
+    playerList.append(`<li>${playerText}</li>`);
+  });
 });
 
-startButton.addEventListener("click", (event) => {
+startButton.on("click", () => {
   channel.push("start_game")
     .receive("error", resp => alert(resp.reason));
 });
 
 channel.on("update_board", payload => {
-  let board = payload.board;
-  let cards = document.getElementsByClassName("card");
-
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].className = `card ${board[i].color}`;
-  }
+  $.each($(".card"), function(index, card) {
+    $(card).addClass(payload.board[index].color);
+  });
 });

@@ -37,7 +37,9 @@ defmodule SetGame.GameChannel do
 
   def handle_in("start_game", _payload, socket) do
     game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
-    SetGame.Game.start(game)
+    {:ok, board} = SetGame.Game.start(game)
+    broadcast(socket, "update_board", %{board: board})
+
     {:reply, :ok, socket}
   end
 end

@@ -9,22 +9,22 @@
 <section id="board" data-game-id="<%= @conn.params["id"] %>">
   <table>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="card"></td>
+      <td class="card"></td>
+      <td class="card"></td>
+      <td class="card"></td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="card"></td>
+      <td class="card"></td>
+      <td class="card"></td>
+      <td class="card"></td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td class="card"></td>
+      <td class="card"></td>
+      <td class="card"></td>
+      <td class="card"></td>
     </tr>
   </table>
 </section>

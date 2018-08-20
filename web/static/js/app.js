@@ -53,3 +53,12 @@ startButton.addEventListener("click", (event) => {
   channel.push("start_game")
     .receive("error", resp => alert(resp.reason));
 });
+
+channel.on("update_board", payload => {
+  let board = payload.board;
+  let cards = document.getElementsByClassName("card");
+
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].className = `card ${board[i].color}`;
+  }
+});

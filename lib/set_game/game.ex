@@ -37,6 +37,6 @@ defmodule SetGame.Game do
     [a, b, c, d, e, f, g, h, i, j, k, l | tail] = deck
     board = [a, b, c, d, e, f, g, h, i, j, k, l]
 
-    {:reply, {:ok}, %{state | status: :in_progress, board: board, deck: tail}}
+    {:reply, {:ok, board}, %{state | status: :in_progress, board: board, deck: tail}}
   end
 end

@@ -45,6 +45,10 @@ channel.on("player_joined", payload => {
   });
 });
 
+channel.on("welcome", payload => {
+  alert(`Welcome to the game! You are player #${payload.player}.`);
+});
+
 startButton.on("click", () => {
   channel.push("start_game")
     .receive("error", resp => alert(resp.reason));

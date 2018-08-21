@@ -55,7 +55,12 @@ startButton.on("click", () => {
 });
 
 channel.on("update_board", payload => {
-  $.each($(".card"), function(index, card) {
-    $(card).addClass(payload.board[index].color);
+  $.each($(".card"), function(index, cardEl) {
+    let card = payload.board[index];
+    $(cardEl).addClass(card.color);
+    let shapeEl = `<div class="shape ${card.shape} ${card.pattern}"></div>`;
+    for (let i = 0; i < card.number; i++) {
+      $(cardEl).append(shapeEl);
+    }
   });
 });

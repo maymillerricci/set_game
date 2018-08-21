@@ -4,7 +4,7 @@ defmodule SetGame.Deck do
   @patterns [:empty, :dots, :solid]
   @shapes [:heart, :moon, :star]
 
-  def generate do
+  def init do
     for color <- @colors,
         number <- @numbers,
         pattern <- @patterns,

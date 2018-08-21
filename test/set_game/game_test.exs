@@ -13,7 +13,7 @@ defmodule SetGame.GameTest do
     test "player numbers and counts are sequential as they join", %{game: game} do
       assert {:ok, 1, [%Player{}]} = Game.join(game)
       assert {:ok, 2, [%Player{}, %Player{}]} = Game.join(game)
-      assert {:ok, 3, [%Player{} , %Player{}, %Player{}]} = Game.join(game)
+      assert {:ok, 3, [%Player{}, %Player{}, %Player{}]} = Game.join(game)
     end
   end
 

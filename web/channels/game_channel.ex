@@ -1,7 +1,7 @@
 defmodule SetGame.GameChannel do
   use SetGame.Web, :channel
 
-  intercept ["welcome"]
+  intercept(["welcome"])
 
   def join("game:" <> id, _payload, socket) do
     game =
@@ -27,7 +27,6 @@ defmodule SetGame.GameChannel do
   end
 
   def handle_info(:after_join, socket) do
-    game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
     broadcast(socket, "player_joined", %{players: socket.assigns.players})
     broadcast(socket, "welcome", %{player: socket.assigns.player})
 
@@ -45,7 +44,7 @@ defmodule SetGame.GameChannel do
   def handle_in("start_game", _payload, socket) do
     game = SetGame.Game.Supervisor.find_game(socket.assigns.game_id)
     {:ok, board} = SetGame.Game.start(game)
-    broadcast(socket, "update_board", %{board: board})
+    broadcast(socket, "game_started", %{board: board})
 
     {:reply, :ok, socket}
   end

@@ -32,10 +32,12 @@ let startButton = $("#start-game");
 
 let channel = socket.channel(`game:${gameId}`);
 
-channel.join()
-  .receive("error", resp => {
-    alert(`Sorry, you can't join because ${resp.reason}`)
-  });
+if (gameId) {
+  channel.join()
+    .receive("error", resp => {
+      alert(`Sorry, you can't join because ${resp.reason}`)
+    });
+}
 
 channel.on("player_joined", payload => {
   playerList.text("");
@@ -54,7 +56,7 @@ startButton.on("click", () => {
     .receive("error", resp => alert(resp.reason));
 });
 
-channel.on("update_board", payload => {
+channel.on("game_started", payload => {
   $.each($(".card"), function(index, cardEl) {
     let card = payload.board[index];
     $(cardEl).addClass(card.color);
@@ -63,4 +65,6 @@ channel.on("update_board", payload => {
       $(cardEl).append(shapeEl);
     }
   });
+  startButton.hide();
+  alert("The game has begun!");
 });

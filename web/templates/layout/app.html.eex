@@ -18,8 +18,22 @@
         <h1 class="display-4"><%= link("Set Game", to: "/", class: "title")%></h1>
       </div>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <p class="alert alert-info" role="alert">
+        <span class="alert-info-text">
+          <%= get_flash(@conn, :info) %>
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </p>
+      <p class="alert alert-danger" role="alert">
+        <span class="alert-info-error">
+          <%= get_flash(@conn, :error) %>
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </p>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>

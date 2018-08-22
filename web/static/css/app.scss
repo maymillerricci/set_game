@@ -14,9 +14,14 @@ h1, h2, h3, h4, h5, h6, h1 a {
   font-family: 'Ribeye', cursive;
 }
 
+.alert {
+  text-align: center;
+  display: none;
+}
+
 .jumbotron {
   background-color: #e6eeff;
-  padding-bottom: 16px;
+  padding-bottom: 0;
   padding-top: 16px;
 }
 

@@ -29,13 +29,16 @@ let boardContainer = $("#board");
 let gameId = boardContainer.data("game-id");
 let playerList = $("#player-list");
 let startButton = $("#start-game");
+let infoFlash = $(".alert-info-text");
+let errorFlash = $(".alert-error-text");
+let closeFlash = $(".close");
 
 let channel = socket.channel(`game:${gameId}`);
 
 if (gameId) {
   channel.join()
     .receive("error", resp => {
-      alert(`Sorry, you can't join because ${resp.reason}`)
+      showErrorFlash(`Sorry, you can't join because ${resp.reason}`)
     });
 }
 
@@ -48,12 +51,12 @@ channel.on("player_joined", payload => {
 });
 
 channel.on("welcome", payload => {
-  alert(`Welcome to the game! You are player #${payload.player}.`);
+  showInfoFlash(`Welcome to the game! You are player #${payload.player}.`);
 });
 
 startButton.on("click", () => {
   channel.push("start_game")
-    .receive("error", resp => alert(resp.reason));
+    .receive("error", resp => showErrorFlash(resp.reason));
 });
 
 channel.on("game_started", payload => {
@@ -66,5 +69,17 @@ channel.on("game_started", payload => {
     }
   });
   startButton.hide();
-  alert("The game has begun!");
+  showInfoFlash("The game has begun!");
+});
+
+function showInfoFlash(text) {
+  infoFlash.text(text).parent().show();
+}
+
+function showErrorFlash(text) {
+  errorFlash.text(text).parent().show();
+}
+
+closeFlash.on("click", (e) => {
+  $(e.target).closest(".alert").hide()
 });

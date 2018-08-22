@@ -1,12 +1,12 @@
-<button id="start-game">Start Game</button>
+<button id="start-game" class="btn btn-primary btn-lg">Start Game</button>
 
-<section>
+<section class="col-md-3">
   <h3>Players:</h3>
-  <ul id="player-list">
+  <ul id="player-list" class="list-group">
   </ul>
 </section>
 
-<section id="board" data-game-id="<%= @conn.params["id"] %>">
+<section id="board" class="col-md-9" data-game-id="<%= @conn.params["id"] %>">
   <table>
     <tr>
       <td class="card"></td>

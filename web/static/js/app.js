@@ -43,7 +43,7 @@ channel.on("player_joined", payload => {
   playerList.text("");
   $.each(payload.players, function(index, player) {
     let playerText = `Player #${player.number} | Points: ${player.points}`;
-    playerList.append(`<li>${playerText}</li>`);
+    playerList.append(`<li class="list-group-item">${playerText}</li>`);
   });
 });
 

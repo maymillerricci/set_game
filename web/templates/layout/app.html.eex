@@ -8,12 +8,12 @@
     <meta name="author" content="">
 
     <title>Set Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Ribeye" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Ribeye" rel="stylesheet">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="jumbotron">
         <h1 class="display-4"><%= link("Set Game", to: "/", class: "title")%></h1>
       </div>

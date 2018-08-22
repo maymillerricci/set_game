@@ -1,5 +1,17 @@
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
 body {
   background-color: #e6eeff;
+}
+
+section {
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6, h1 a {
+  font-family: 'Ribeye', cursive;
 }
 
 .jumbotron {
@@ -10,7 +22,6 @@ body {
 
 .title {
   color: #484848;
-  font-family: 'Ribeye', cursive;
   font-weight: 700;
 }
 
@@ -21,6 +32,8 @@ a:hover {
 
 .btn-primary {
   background-color: #3C13AF;
+  font-weight: bold;
+  box-shadow: 2px 2px 2px 2px silver;
 
   &:hover {
     background-color: #3d0099;
@@ -34,8 +47,8 @@ table {
   td {
     background-color: white;
     border: 3px darkslateblue solid;
-    height: 200px;
-    width: 130px;
+    height: 140px;
+    width: 220px;
     border-radius: 10px;
   }
 }

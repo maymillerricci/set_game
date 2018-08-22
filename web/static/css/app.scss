@@ -1,5 +1,30 @@
 body {
-  background-color: lightsteelblue;
+  background-color: #e6eeff;
+}
+
+.jumbotron {
+  background-color: #e6eeff;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.title {
+  color: #484848;
+  font-family: 'Ribeye', cursive;
+  font-weight: 700;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #383838;
+}
+
+.btn-primary {
+  background-color: #3C13AF;
+
+  &:hover {
+    background-color: #3d0099;
+  }
 }
 
 table {

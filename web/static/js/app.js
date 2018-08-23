@@ -68,7 +68,7 @@ channel.on("game_started", payload => {
       $(cardEl).append(shapeEl);
     }
   });
-  startButton.hide();
+  startButton.text("Set!").attr("id", "set");
   showInfoFlash("The game has begun!");
 });
 

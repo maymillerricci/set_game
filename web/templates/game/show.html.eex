@@ -1,7 +1,6 @@
-<button id="start-game" class="btn btn-primary btn-lg">Start Game</button>
-
 <section class="col-md-3">
-  <h3>Players:</h3>
+  <button id="start-game" class="btn btn-primary btn-lg">Start Game</button>
+  <h2>Players:</h2>
   <ul id="player-list" class="list-group">
   </ul>
 </section>
